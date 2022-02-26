@@ -1,0 +1,83 @@
+/* global =================================== */
+:root {
+  --body-bg-color: #22212c;
+  --text-color: #837e9f;
+  --bg-cards: #302f3d;
+  --bg-techs: #cb92b1;
+  --details: #fa6105;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--body-bg-color);
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+.container {
+  padding: 30px;
+  margin: auto;
+  display: flex;
+}
+
+.card-content {
+  background: var(--bg-cards);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: var(--text-color);
+
+  padding: 10%;
+}
+
+/* my overview =================================== */
+.my-overview {
+  width: 30%;
+}
+
+.my-overview .profile {
+  text-align: center;
+}
+
+.my-overview .profile .personal-photo {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  border-radius: 50%;
+  border: 2px solid var(--details);
+
+  margin: 0 auto 20px;
+}
+
+.my-overview .profile .personal-photo img {
+  width: 100%;
+  margin-top: 20%;
+}
+
+.my-overview .profile h4 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 29px;
+
+  margin-bottom: 10px;
+}
+
+.my-overview .profile p {
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+/* my portfolio =================================== */
+.my-portfolio {
+  width: 60%;
+}
