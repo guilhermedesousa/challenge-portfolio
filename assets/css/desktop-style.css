@@ -4,7 +4,7 @@
   --text-color: #837e9f;
   --bg-cards: #302f3d;
   --bg-techs: #cb92b1;
-  --details: #fa6105;
+  --details: #f5ae25;
 }
 
 * {
@@ -17,6 +17,11 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: "Merriweather Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .container {
@@ -37,11 +42,42 @@ body {
   padding: 10%;
 }
 
+.card-content h3 {
+  margin-bottom: 20px;
+}
+
+.topics-container {
+  padding-left: 10%;
+}
+
+.list li {
+  font-weight: 700;
+}
+
+.list p.list-date {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  margin: 5px 0;
+}
+
+.list p.list-detail {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 /* my overview =================================== */
 .my-overview {
   grid-area: a;
 }
 
+.my-overview > div {
+  margin-bottom: 30px;
+}
+
+/* profile */
 .my-overview .profile {
   text-align: center;
 }
@@ -79,6 +115,84 @@ body {
   font-weight: 300;
   font-size: 13px;
   line-height: 16px;
+}
+
+/* links */
+.my-overview .links div {
+  margin-bottom: 20px;
+}
+
+.my-overview .links div a {
+  display: flex;
+  align-items: center;
+}
+
+.my-overview .links div a:hover {
+  color: var(--details);
+  transition: 0.3s;
+}
+
+.my-overview .links div a:not(:hover) {
+  transition: 0.3s;
+}
+
+.my-overview .links div:last-child {
+  margin-bottom: 0;
+}
+
+.my-overview .links div {
+  font-size: 13px;
+}
+
+.my-overview .links img {
+  margin-right: 20px;
+}
+
+.my-overview .links .link-icon {
+  filter: invert(56%) sepia(29%) saturate(323%) hue-rotate(209deg)
+    brightness(85%) contrast(83%);
+}
+
+.my-overview .links div a:hover .link-icon {
+  filter: invert(76%) sepia(14%) saturate(2302%) hue-rotate(349deg)
+    brightness(96%) contrast(101%);
+  transition: 0.3s;
+}
+
+.my-overview .links div a:not(:hover) .link-icon {
+  transition: 0.3s;
+}
+
+/* technologies */
+.my-overview .technologies .techs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.my-overview .technologies .tech-label {
+  background: var(--details);
+  color: #000000;
+  border-radius: 30px;
+  padding: 7px;
+  width: 80px;
+  margin: 5px 5px 10px;
+
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+}
+
+/* education */
+.my-overview .education ul:first-child {
+  margin-bottom: 20px;
+}
+
+/* languages */
+.my-overview .languages ul:first-child {
+  margin-bottom: 20px;
 }
 
 /* my portfolio =================================== */
