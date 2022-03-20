@@ -14,8 +14,7 @@
     <!-- font-family Merriweather Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -150,8 +149,49 @@
                     <h3>My Projects</h3>
                     <p>Veja todos</p>
                 </div>
-                <div class="project-1"></div>
-                <div class="project-2"></div>
+
+                <div class="projects-list">
+
+                    <?php
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/users/guilhermedesousa/repos');
+                    curl_setopt($ch, CURLOPT_USERAGENT, 'guilhermedesousa');
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                    $output = curl_exec($ch);
+
+                    curl_close($ch);
+
+                    $output = json_decode($output);
+
+                    $repositories = [];
+
+                    foreach ($output as $repo) {
+                        if (!$repo->fork) {
+                            $repositories[] = ["name" => $repo->name, "description" => $repo->description, "url" => $repo->html_url, "language" => $repo->language, "stars_count" => $repo->stargazers_count, "forks_count" => $repo->forks_count];
+                        }
+                    }
+
+                    foreach ($repositories as $project) {
+                    ?>
+
+                        <div class="project card-content">
+                            <a href="<?php echo $project["url"]; ?>">
+                                <img src="./assets/images/folder.svg" class="link-icon" alt="" srcset="">
+                                <?php echo $project["name"]; ?>
+                            </a>
+
+                            <p><?php echo $project["description"]; ?></p>
+                        </div>
+
+                    <?php
+                    }
+
+                    ?>
+
+                </div>
+
             </div>
 
             <div class="recent-posts">

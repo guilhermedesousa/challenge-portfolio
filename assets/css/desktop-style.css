@@ -71,6 +71,12 @@ a {
   line-height: 20px;
 }
 
+.link-icon {
+  filter: invert(56%) sepia(29%) saturate(323%) hue-rotate(209deg)
+    brightness(85%) contrast(83%);
+  margin-right: 20px;
+}
+
 /* my overview =================================== */
 .my-overview {
   grid-area: a;
@@ -147,15 +153,6 @@ a {
   font-size: 13px;
 }
 
-.my-overview .links img {
-  margin-right: 20px;
-}
-
-.my-overview .links .link-icon {
-  filter: invert(56%) sepia(29%) saturate(323%) hue-rotate(209deg)
-    brightness(85%) contrast(83%);
-}
-
 .my-overview .links div a:hover .link-icon {
   filter: invert(76%) sepia(14%) saturate(2302%) hue-rotate(349deg)
     brightness(96%) contrast(101%);
@@ -204,7 +201,7 @@ a {
 }
 
 /* projects */
-.my-portfolio .my-projects div:first-child {
+.my-portfolio .my-projects > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -216,6 +213,27 @@ a {
 
 .my-portfolio .my-projects div:first-child p {
   font-size: 14px;
+}
+
+.my-projects > div {
+  margin-bottom: 30px;
+}
+
+.projects-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.project {
+  width: 48%;
+  margin-bottom: 30px;
+}
+
+.project a {
+  display: flex;
+  align-items: center;
 }
 
 /* footer =================================== */
