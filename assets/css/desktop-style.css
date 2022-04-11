@@ -234,6 +234,68 @@ a {
 .project a {
   display: flex;
   align-items: center;
+  font-weight: bold;
+}
+
+.repository-description {
+  margin: 20px 0;
+}
+
+.repository-description p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.extra-infos-repository {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 14px;
+}
+
+.extra-infos-repository > div {
+  display: flex;
+  align-items: center;
+}
+
+.extra-infos-repository .stars-count,
+.extra-infos-repository .forks-count {
+  display: flex;
+  align-items: center;
+}
+
+.extra-infos-repository .stars-count {
+  margin-right: 20px;
+}
+
+.repo-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.repository-language {
+  display: flex;
+  align-items: center;
+}
+
+.circle-color {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+}
+
+.circle-color.blue-language {
+  background: #4F5D95;
 }
 
 /* footer =================================== */

@@ -168,7 +168,8 @@
                     $repositories = [];
 
                     foreach ($output as $repo) {
-                        if (!$repo->fork) {
+                        // take out fork repositories and my README.md
+                        if (!$repo->fork && $repo->name != "guilhermedesousa") {
                             $repositories[] = ["name" => $repo->name, "description" => $repo->description, "url" => $repo->html_url, "language" => $repo->language, "stars_count" => $repo->stargazers_count, "forks_count" => $repo->forks_count];
                         }
                     }
@@ -182,7 +183,34 @@
                                 <?php echo $project["name"]; ?>
                             </a>
 
-                            <p><?php echo $project["description"]; ?></p>
+                            <div class="repository-description">
+                                <p><?php echo $project["description"]; ?></p>
+                            </div>
+
+                            <div class="extra-infos-repository">
+                                <div>
+                                    <div class="stars-count">
+                                        <img src="./assets/images/star.svg" class="link-icon repo-icon" alt="" srcset="">
+                                        <?php echo $project["stars_count"]; ?>
+                                    </div>
+
+                                    <div class="forks-count">
+                                        <img src="./assets/images/git-branch.svg" class="link-icon repo-icon" alt="" srcset="">
+                                        <?php echo $project["forks_count"]; ?>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="repository-language">
+                                        <div class="circle-color <?php
+                                                                    if ($project['language'] == 'PHP') {
+                                                                        echo "blue-language";
+                                                                    };
+                                                                    ?>"></div>
+                                        <p><?php echo $project["language"]; ?></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     <?php
