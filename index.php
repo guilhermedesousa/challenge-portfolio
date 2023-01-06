@@ -1,3 +1,20 @@
+<?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'https://api.github.com/users/guilhermedesousa/repos',
+        CURLOPT_USERAGENT => 'GitHub API in CURL'
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    $repos = json_decode($response);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,13 +22,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>My Portfolio</title>
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
 
     <!-- css links -->
     <link rel="stylesheet" href="./assets/css/desktop-style.css">
+    <link rel="stylesheet" href="./assets/css/mobile-style.css">
 
-    <!-- font-family Merriweather Sans -->
+    <!-- font-family from Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -23,7 +41,7 @@
         <aside class="my-overview">
             <div class="profile card-content">
                 <div class="personal-photo">
-                    <img src="./assets/images/personal-foto.png" alt="My personal photo">
+                    <img src="./assets/images/personal-photo.png" alt="My personal photo">
                 </div>
 
                 <h4>Guilherme de Sousa Santos</h4>
@@ -53,9 +71,9 @@
                 </div>
 
                 <div class="linkedin">
-                    <a href="https://www.linkedin.com/in/guilherme-santos-573905178/" target="_blank">
+                    <a href="https://www.linkedin.com/in/guilherme-de-sousa-santos/" target="_blank">
                         <img src="./assets/images/linkedin.svg" class="link-icon" alt="" srcset="">
-                        <p>guilherme-santos</p>
+                        <p>guilherme-de-sousa-santos</p>
                     </a>
                 </div>
 
@@ -86,16 +104,16 @@
                 <div class="techs">
                     <div class="tech-label">HTML</div>
                     <div class="tech-label">CSS</div>
-                    <div class="tech-label">JAVASCRIPT</div>
+                    <div class="tech-label">JavaScript</div>
                     <div class="tech-label">PHP</div>
                     <div class="tech-label">SQL</div>
-                    <div class="tech-label">PYTHON</div>
-                    <div class="tech-label">BOOTSTRAP</div>
-                    <div class="tech-label">SASS</div>
-                    <div class="tech-label">JQUERY</div>
-                    <div class="tech-label">GIT</div>
-                    <div class="tech-label">GITHUB</div>
-                    <div class="tech-label">WORDPRESS</div>
+                    <div class="tech-label">Python</div>
+                    <div class="tech-label">Bootstrap</div>
+                    <div class="tech-label">Sass</div>
+                    <div class="tech-label">jQuery</div>
+                    <div class="tech-label">Git</div>
+                    <div class="tech-label">GitHub</div>
+                    <div class="tech-label">Wordpress</div>
                 </div>
             </div>
 
@@ -105,7 +123,7 @@
                     <ul class="list">
                         <li>Mobly</li>
                         <p class="list-date">Jun 2021 - Present</p>
-                        <p class="list-detail">Web Development Intern</p>
+                        <p class="list-detail">Web Developer Intern</p>
                     </ul>
                 </div>
             </div>
@@ -116,7 +134,7 @@
                     <ul class="list">
                         <li>Federal University of ABC</li>
                         <p class="list-date">2019 - Present</p>
-                        <p class="list-detail">Computer Science</p>
+                        <p class="list-detail">Science and Technology</p>
                     </ul>
 
                     <ul class="list">
@@ -137,7 +155,7 @@
 
                     <ul class="list">
                         <li>English</li>
-                        <p class="list-date">B2 - Upper Intermediate</p>
+                        <p class="list-date">Professional working</p>
                     </ul>
                 </div>
             </div>
@@ -147,76 +165,48 @@
             <div class="my-projects">
                 <div class="card-content">
                     <h3>My Projects</h3>
-                    <p>Veja todos</p>
+                    <a href="https://github.com/guilhermedesousa?tab=repositories" target="_blank">More</a>
                 </div>
 
                 <div class="projects-list">
 
                     <?php
 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/users/guilhermedesousa/repos');
-                    curl_setopt($ch, CURLOPT_USERAGENT, 'guilhermedesousa');
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                    $output = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $output = json_decode($output);
-
-                    $repositories = [];
-
-                    foreach ($output as $repo) {
-                        // take out fork repositories and my README.md
-                        if (!$repo->fork && $repo->name != "guilhermedesousa") {
-                            $repositories[] = ["name" => $repo->name, "description" => $repo->description, "url" => $repo->html_url, "language" => $repo->language, "stars_count" => $repo->stargazers_count, "forks_count" => $repo->forks_count];
-                        }
-                    }
-
-                    foreach ($repositories as $project) {
-                    ?>
-
+                    // projects displayed: 4
+                    $projectsNumber = 4;
+                    for ($i = 0; $i < $projectsNumber; $i++): ?>
                         <div class="project card-content">
-                            <a href="<?php echo $project["url"]; ?>">
+                            <a href="<?= $repos[$i]->url; ?>">
                                 <img src="./assets/images/folder.svg" class="link-icon" alt="" srcset="">
-                                <?php echo $project["name"]; ?>
+                                <?= $repos[$i]->name; ?>
                             </a>
 
                             <div class="repository-description">
-                                <p><?php echo $project["description"]; ?></p>
+                                <p><?= $repos[$i]->description; ?></p>
                             </div>
 
                             <div class="extra-infos-repository">
                                 <div>
                                     <div class="stars-count">
                                         <img src="./assets/images/star.svg" class="link-icon repo-icon" alt="" srcset="">
-                                        <?php echo $project["stars_count"]; ?>
+                                        <?= $repos[$i]->stargazers_count; ?>
                                     </div>
 
                                     <div class="forks-count">
                                         <img src="./assets/images/git-branch.svg" class="link-icon repo-icon" alt="" srcset="">
-                                        <?php echo $project["forks_count"]; ?>
+                                        <?= $repos[$i]->forks_count; ?>
                                     </div>
                                 </div>
 
                                 <div>
                                     <div class="repository-language">
-                                        <div class="circle-color <?php
-                                                                    if ($project['language'] == 'PHP') {
-                                                                        echo "blue-language";
-                                                                    };
-                                                                    ?>"></div>
-                                        <p><?php echo $project["language"]; ?></p>
+                                        <div class="circle-color"></div>
+                                        <p><?=  $repos[$i]->language; ?></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    <?php
-                    }
-
-                    ?>
+                    <?php endfor; ?>
 
                 </div>
 
@@ -228,7 +218,7 @@
         </main>
 
         <footer>
-            <p>Developed by Guilherme 🚀</p>
+            <p>Developed by Guilherme Santos 🚀</p>
         </footer>
     </div>
 
